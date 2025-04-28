@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://daygwig5g6m5f"]
+
+[ext_resource type="Texture2D" uid="uid://cocoynutc8kmu" path="res://Tester Assets/art/playerGrey_up1.png" id="1_7jktm"]
+[ext_resource type="Script" uid="uid://l7uvh7mym128" path="res://character_body_2d.gd" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://vbieq2m5wry6" path="res://player.gd" id="1_ryrav"]
+[ext_resource type="Texture2D" uid="uid://x6u6bbp50558" path="res://Tester Assets/art/playerGrey_up2.png" id="2_ryrav"]
+[ext_resource type="Texture2D" uid="uid://ckp7ejo0e2qu2" path="res://Player Character Assets/Walking Animation/Raven_OG_Walking_1.png" id="4_7jktm"]
+[ext_resource type="Texture2D" uid="uid://lpdo1u32nm0m" path="res://Player Character Assets/Walking Animation/Raven_OG_Walking_2.png" id="5_ryrav"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80nbo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7jktm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ryrav")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7jktm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ryrav")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vef74"]
+radius = 12.5772
+height = 75.2645
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(6.34787, 4.78313)
+script = ExtResource("1_ryrav")
+speed = 200
+
+[node name="Mob Timer" type="Timer" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(34, -5)
+scale = Vector2(1.95988, 1.76498)
+script = ExtResource("1_80nbo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_80nbo")
+animation = &"walk"
+frame_progress = 0.685779
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-22.4504, 6.79896)
+scale = Vector2(4.01625, 2.71003)
+shape = SubResource("CapsuleShape2D_vef74")
